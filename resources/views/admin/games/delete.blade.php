@@ -2,15 +2,14 @@
 
 @section('content')
 
-<div class="container">
-<div class="container mx-1">
-
         @if(session('status'))
             <div class="bg-green-200 text-green-900 rounded-lg shadow-md p-6 pr-10 mb-8" style="...">
                 {{ session('status') }}
             </div>
         @endif
 
+        <div class="container">
+<div class="container mx-1">
 
 <form id="form" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
     action="{{ route('games.destroy',$games->id) }}" method="POST">

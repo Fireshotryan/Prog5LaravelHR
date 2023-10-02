@@ -2,14 +2,15 @@
 
 @section('content')
 
-<div class="container">
-<div class="container mx-1">
+
 
 @if(session('status'))
             <div class="bg-green-200 text-green-900 rounded-lg shadow-md p-6 pr-10 mb-8" style="...">
                 {{ session('status') }}
             </div>
         @endif
+        <div class="container">
+<div class="container mx-1">
 
         <table class="table-fixed">
     <thead class="bg-gray divide-y divide-gray-200">

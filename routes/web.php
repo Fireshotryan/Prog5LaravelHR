@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\GamesController;
-use App\Http\Controllers\Admin\WriterController;
+use App\Http\Controllers\Admin\WritersController;
 use App\Http\Controllers\Admin\UsersController;
 
 /*
@@ -17,6 +17,10 @@ use App\Http\Controllers\Admin\UsersController;
 |
 */
 
+Route::get('/', [GamesController::class, 'index']);
+Route::get('/', [WriterController::class, 'index']);
+Route::get('/', [UsersController::class, 'index']);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,6 +31,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/games', [App\Http\Controllers\Admin\GamesController::class, 'index'])->name('games');
 
+Route::get('/writers', [App\Http\Controllers\Admin\WritersController::class, 'index'])->name('writers');
 
-Route::resource('/admin/evenements', EvenementsController::class);
+Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
+
+Route::get('admin/games/{games}/delete', [GamesController::class, 'delete'])
+->name('games.delete');
+
+Route::resource('/admin/games', GamesController::class);
 

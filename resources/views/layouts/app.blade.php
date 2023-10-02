@@ -32,6 +32,9 @@
                     <ul class="navbar-nav me-auto">
                     <a class="nav-link" href="{{ route('games') }}">{{ __('Games') }}</a>
                     </ul>
+                    <ul class="navbar-nav me-auto">
+                    <a class="nav-link" href="{{ route('writers') }}">{{ __('Writers') }}</a>
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

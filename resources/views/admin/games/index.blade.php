@@ -30,7 +30,7 @@
     <thead class="bg-gray divide-y divide-gray-200">
         <tr>
             <th class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                Games id
+                Games
             </th>
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                Naam game

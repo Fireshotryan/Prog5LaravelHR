@@ -9,10 +9,11 @@
             </div>
         @endif
 
-        <div class="container">
-<div class="container mx-1">       
+  
 
         @section('content')
+        <div class="container">
+<div class="container mx-1">       
 
 <div class="container mx-1">
         <div class="ml-2 flex flex-col">

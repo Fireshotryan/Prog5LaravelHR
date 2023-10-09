@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\UsersController;
 */
 
 Route::get('/', [GamesController::class, 'index']);
-Route::get('/', [WriterController::class, 'index']);
+Route::get('/', [WritersController::class, 'index']);
 Route::get('/', [UsersController::class, 'index']);
 
 Route::get('/', function () {
@@ -39,4 +39,5 @@ Route::get('admin/games/{games}/delete', [GamesController::class, 'delete'])
 ->name('games.delete');
 
 Route::resource('/admin/games', GamesController::class);
+Route::resource('/admin/writers', WritersController::class);
 

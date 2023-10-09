@@ -1,16 +1,17 @@
 @extends('layouts.app')
-
+<div class="container mx-1 pr-4">
 @section('content')
         @if(session('status'))
             <div class="bg-green-200 text-green-900 rounded-lg shadow-md p-6 pr-10 mb-8" style="...">
                 {{ session('status') }}
             </div>
         @endif
+</div>
 
         <div class="container">
 <div class="container mx-1">
 
-        <a href="">
+<a href="{{ route('writers.create') }}">
     <button
     class="ml-6 py-2 block border-b-2 border-transparent
         focus:outline-none font-medium capitalize text-center
@@ -41,6 +42,9 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ $writer->name }}
             </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <a href="{{ route('writers.show', ['writer' => $writer -> id]) }}"> Details </a>
+                    </td>
             </tr>
         @endforeach
     </tbody>

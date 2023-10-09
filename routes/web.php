@@ -38,6 +38,9 @@ Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'
 Route::get('admin/games/{games}/delete', [GamesController::class, 'delete'])
 ->name('games.delete');
 
+Route::get('admin/writers/{writers}/delete', [WritersController::class, 'delete'])
+->name('writers.delete');
+
 Route::resource('/admin/games', GamesController::class);
 Route::resource('/admin/writers', WritersController::class);
 

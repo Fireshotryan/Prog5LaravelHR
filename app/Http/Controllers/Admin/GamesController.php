@@ -100,6 +100,6 @@ class GamesController extends Controller
     {
         $games = Games::find($id);
         $games->delete();
-        return redirect()->route('games.index')->with('message', 'Game deleted');
+        return redirect()->route('games.index')->with('status', 'Game deleted');
     }
 }

@@ -45,6 +45,12 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <a href="{{ route('writers.show', ['writer' => $writer -> id]) }}"> Details </a>
                     </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <a href="{{ route('writers.edit', ['writer' => $writer -> id]) }}"> Edit </a>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <a href="{{ route('writers.delete', $writer->id) }}"> Delete </a>
+                    </td>
             </tr>
         @endforeach
     </tbody>

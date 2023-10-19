@@ -22,7 +22,8 @@
     </button> 
 </a>
 
-        <table class="table-fixed">
+<div class="overflow-x-auto">
+<table class="min-w-full table-auto">
     <thead class="bg-gray divide-y divide-gray-200">
         <tr>
             <th class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -50,13 +51,13 @@
             {{ $game->description }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <a href="{{ route('games.show', ['game' => $game -> id]) }}"> Details </a>
+                        <a class="no-underline hover:underline" href="{{ route('games.show', ['game' => $game -> id]) }}"> Details </a>
                     </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            <a href="{{ route('games.edit', $game->id) }}"> Edit </a>
+            <a class="no-underline hover:underline" href="{{ route('games.edit', $game->id) }}"> Edit </a>
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            <a href="{{ route('games.delete', $game->id) }}"> Delete </a>
+            <a class="no-underline hover:underline" href="{{ route('games.delete', $game->id) }}"> Delete </a>
             </td>
     
         </tr>
@@ -64,7 +65,7 @@
     </tbody>
 </table>
     </div>
-
+    </div>
 @endsection
 </div>
 

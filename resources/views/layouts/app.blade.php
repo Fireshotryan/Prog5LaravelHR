@@ -11,6 +11,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type='image/x-icon'>
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 

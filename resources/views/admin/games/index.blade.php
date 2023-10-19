@@ -17,11 +17,7 @@
 
         <a href="{{ route('games.create') }}">
     <button
-    class="ml-6 py-2 block border-b-2 border-transparent
-        focus:outline-none font-medium capitalize text-center
-        focus:text-green-500 focus:border-green-500
-        dark-focus:text-green-200 dark-focus:border-green-200
-        transition duration-500 ease-in-out">
+    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         Create
     </button> 
 </a>

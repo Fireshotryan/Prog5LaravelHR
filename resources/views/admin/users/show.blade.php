@@ -27,7 +27,9 @@
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                Account Wachtwoord
             </th>
-           
+            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+               Account Role
+            </th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -42,6 +44,14 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ $users->password }}
             </td>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      @if(!empty($users->getRoleNames()))
+        @foreach($users->getRoleNames() as $v)
+           <label>{{ $v }}</label>
+        @endforeach
+      @endif
+    </td>
         </tr>
  
     </tbody>

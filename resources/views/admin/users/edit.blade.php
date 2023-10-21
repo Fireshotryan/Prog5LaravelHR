@@ -14,3 +14,44 @@
                 {{ session('status') }}
             </div>
         @endif
+
+        <form id="form" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
+    action="{{ route('users.update',$users->id) }}" method="POST">
+    @method('PUT')
+    @csrf
+
+        <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+            Name
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror" name="name" id="name" value="{{$users->name}}" type="text">
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+            Mail
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" name="email" id="email" value="{{$users->email}}" type="mail">
+    </div>
+            <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="role">
+        Role
+    </label>
+    <select name="roles[]" class="form-control">
+    @foreach ($roles as $value => $label)
+        <option value="{{ $value }}" {{ in_array($value, $userRole) ? 'selected' : '' }}>{{ $label }}</option>
+    @endforeach
+</select>
+</div>
+
+          
+   
+            </div>
+
+            <div class="flex item-center justifiy-between">
+                <button id="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Submit
+                </button>
+            </div>
+        </form>
+    </div>
+@endsection

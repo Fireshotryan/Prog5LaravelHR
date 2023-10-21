@@ -67,12 +67,11 @@
     <label class="block text-gray-700 text-sm font-bold mb-2" for="role">
         Role
     </label>
-    <select name="roles[]" id="role" class="form-control" multiple>
-        <option value="reader">Reader</option>
-        <option value="writer">Writer</option>
-        <option value="admin">Admin</option>
-        <!-- Add more options as needed -->
-    </select>
+    <select name="roles[]" class="form-control">
+    @foreach ($roles as $value => $label)
+        <option value="{{ $value }}">{{ $label }}</option>
+    @endforeach
+</select>
 </div>
 
           

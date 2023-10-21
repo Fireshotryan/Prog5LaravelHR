@@ -14,13 +14,14 @@
                 {{ session('status') }}
             </div>
         @endif
-
+        @can('create games')
         <a href="{{ route('games.create') }}">
     <button
     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         Create
     </button> 
 </a>
+@endcan
 
 <div class="overflow-x-auto">
 <table class="min-w-full table-auto">
@@ -50,15 +51,21 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ $game->description }}
             </td>
+            @can('show games')
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <a class="no-underline hover:underline" href="{{ route('games.show', ['game' => $game -> id]) }}"> Details </a>
                     </td>
+                    @endcan
+                    @can('edit games')
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <a class="no-underline hover:underline" href="{{ route('games.edit', $game->id) }}"> Edit </a>
             </td>
+            @endcan
+            @can('delete games')
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <a class="no-underline hover:underline" href="{{ route('games.delete', $game->id) }}"> Delete </a>
             </td>
+            @endcan
     
         </tr>
         @endforeach

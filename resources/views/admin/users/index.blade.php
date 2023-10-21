@@ -62,9 +62,11 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ $user->password }}
             </td>
+            @can('show users')
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <a href="{{ route('users.show', ['user' => $user -> id]) }}"> Details </a>
                     </td>
+                    @endcan
                     @can('edit users')
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <a href="{{ route('users.edit', $user->id) }}"> Edit </a>

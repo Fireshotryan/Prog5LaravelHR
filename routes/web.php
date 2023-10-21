@@ -41,6 +41,11 @@ Route::get('admin/games/{games}/delete', [GamesController::class, 'delete'])
 Route::get('admin/writers/{writers}/delete', [WritersController::class, 'delete'])
 ->name('writers.delete');
 
+Route::get('admin/users/{users}/delete', [UsersController::class, 'delete'])
+->name('users.delete');
+
 Route::resource('/admin/games', GamesController::class);
 Route::resource('/admin/writers', WritersController::class);
+Route::resource('/admin/users', UsersController::class);
+Route::resource('roles', RoleController::class);
 

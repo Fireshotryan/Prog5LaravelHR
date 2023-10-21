@@ -35,7 +35,14 @@
                     <a class="nav-link" href="{{ route('games') }}">{{ __('Games') }}</a>
                     </ul>
                     <ul class="navbar-nav">
+                    @can('view writers')
                     <a class="nav-link" href="{{ route('writers') }}">{{ __('Writers') }}</a>
+           @endcan
+                    </ul>
+                    <ul class="navbar-nav">
+                    @can('view users')
+                    <a class="nav-link" href="{{ route('users') }}">{{ __('Users') }}</a>
+                    @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

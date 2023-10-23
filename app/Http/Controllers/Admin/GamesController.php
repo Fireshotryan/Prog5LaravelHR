@@ -18,14 +18,19 @@ class GamesController extends Controller
     {
         $games = Games::all();
 
-        return view('admin.games.index', compact('games'));
+        if (auth()->user()->role == 0 || auth()->user()->role == 1 || auth()->user()->role == 2) {
+            return view('admin.games.index', compact('games'));
+        }
+        else {
+            return view('home', compact('games'));
+        }
     }
 
     public function create()
     {
         return view('admin.games.create');
     }
-    
+
     public function store(GamesStoreRequest $request)
     {
         $games = new Games();
@@ -44,8 +49,13 @@ class GamesController extends Controller
     public function show($id)
     {
         $games = Games::find($id);
-     
-        return view('admin.games.show', compact('games'));
+
+        if (auth()->user()->role == 0 || auth()->user()->role == 1 || auth()->user()->role == 2) {
+            return view('admin.games.show', compact('games'));
+        }
+        else {
+            return view('home', compact('games'));
+        }
     }
 
       /**
@@ -59,9 +69,15 @@ class GamesController extends Controller
     {
         $games = Games::find($id);
 
-        return view('admin.games.edit', compact('games'));
+        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
+            return view('admin.games.edit', compact('games'));
+        }
+        else {
+            return view('home', compact('games'));
+        }
+
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -87,7 +103,13 @@ class GamesController extends Controller
      */
     public function delete(Games $games)
     {
-        return view('admin.games.delete', compact('games'));
+
+        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
+            return view('admin.games.delete', compact('games'));
+        }
+        else {
+            return view('home', compact('games'));
+        }
     }
 
     /**

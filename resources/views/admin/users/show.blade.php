@@ -19,7 +19,7 @@
     <thead class="bg-gray divide-y divide-gray-200">
         <tr>
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-               Naam 
+               Naam
             </th>
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                Account mail
@@ -33,7 +33,7 @@
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-      
+
         <tr>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ $users->name }}
@@ -46,14 +46,10 @@
             </td>
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      @if(!empty($users->getRoleNames()))
-        @foreach($users->getRoleNames() as $v)
-           <label>{{ $v }}</label>
-        @endforeach
-      @endif
-    </td>
+            {{ $users->role }}
+            </td>
         </tr>
- 
+
     </tbody>
 </table>
     </div>

@@ -14,14 +14,15 @@
                 {{ session('status') }}
             </div>
         @endif
-        @can('create games')
+        @if(auth()->user()->role === 1 || auth()->user()->role === 2)
         <a href="{{ route('games.create') }}">
     <button
     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         Create
-    </button> 
+    </button>
 </a>
-@endcan
+@endif
+
 
 <div class="overflow-x-auto">
 <table class="min-w-full table-auto">
@@ -36,7 +37,7 @@
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                Info Game
             </th>
-           
+
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -51,22 +52,22 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ $game->description }}
             </td>
-            @can('show games')
+
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <a class="no-underline hover:underline" href="{{ route('games.show', ['game' => $game -> id]) }}"> Details </a>
                     </td>
-                    @endcan
-                    @can('edit games')
+
+                    @if(auth()->user()->role === 1 || auth()->user()->role === 2)
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <a class="no-underline hover:underline" href="{{ route('games.edit', $game->id) }}"> Edit </a>
             </td>
-            @endcan
-            @can('delete games')
+
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <a class="no-underline hover:underline" href="{{ route('games.delete', $game->id) }}"> Delete </a>
             </td>
-            @endcan
-    
+            @endif
+
+
         </tr>
         @endforeach
     </tbody>

@@ -18,13 +18,26 @@ class WritersController extends Controller
     {
         $writers = Writers::all();
 
-        return view('admin.writers.index', compact('writers'));
+        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
+            return view('admin.writers.index', compact('writers'));
+        }
+        else {
+            return view('home', compact('writers'));
+        }
+
+
     }
+
     public function create()
     {
-        return view('admin.writers.create');
+        if(auth()->user()->role == 2) {
+            return view('admin.writers.create');
+        }
+        else {
+            return view('home');
+        }
     }
-    
+
     public function store(WritersStoreRequest $request)
     {
         $writers = new Writers();
@@ -32,19 +45,29 @@ class WritersController extends Controller
         $writers -> save();
         return redirect()->route('writers.index')->with('status', 'Writer created');
     }
-    
+
     public function show($id)
     {
         $writers = Writers::find($id);
-     
-        return view('admin.writers.show', compact('writers'));
+
+        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
+            return view('admin.writers.show', compact('writers'));
+        }
+        else {
+            return view('home', compact('writers'));
+        }
     }
 
     public function edit(Writers $writers, $id)
     {
         $writers = Writers::find($id);
 
-        return view('admin.writers.edit', compact('writers'));
+        if(auth()->user()->role == 2) {
+            return view('admin.writers.edit', compact('writers'));
+        }
+        else {
+            return view('home', compact('writers'));
+        }
     }
 
     public function update(WritersUpdateRequest $request, $id)
@@ -57,7 +80,13 @@ class WritersController extends Controller
 
     public function delete(Writers $writers)
     {
-        return view('admin.writers.delete', compact('writers'));
+
+        if(auth()->user()->role == 2) {
+            return view('admin.writers.delete', compact('writers'));
+        }
+        else {
+            return view('home', compact('writers'));
+        }
     }
 
     public function destroy(Writers $writers, $id)

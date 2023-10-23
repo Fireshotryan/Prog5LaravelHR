@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersStoreRequest;
 use App\Http\Requests\UsersUpdateRequest;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Illuminate\Validation\Rules;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Arr;
@@ -17,16 +16,11 @@ use DB;
 class UsersController extends Controller
 {
 
-    
+
         /**Set permission on methods... */
 
         public function __construct() {
             $this->middleware('auth');
-            $this->middleware('permission:index users', ['only' => ['index']]);
-            $this->middleware('permission:show users', ['only' => ['show']]);
-            $this->middleware('permission:create users', ['only' => ['create', 'store']]);
-            $this->middleware('permission:edit users', ['only' => ['edit', 'update']]);
-            $this->middleware('permission:delete users', ['only' => ['delete', 'destroy']]);
         }
 
     /**
@@ -38,7 +32,14 @@ class UsersController extends Controller
     {
         $users = User::all();
 
-        return view('admin.users.index', compact('users'));
+        if(auth()->user()->role == 2) {
+            return view('admin.users.index', compact('users'));
+        }
+        else {
+            return view('home', compact('users'));
+        }
+
+
     }
 
     /**
@@ -48,8 +49,14 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
-        return view('admin.users.create',compact('roles'));
+        $role = [0 => 'Reader', 1 => 'Writer', 2 => 'Admin'];
+        
+        if(auth()->user()->role == 2) {
+            return view('admin.users.create',compact('role'));
+        }
+        else {
+            return view('home');
+        }
     }
 
 
@@ -61,22 +68,21 @@ class UsersController extends Controller
      */
     public function store(UsersStoreRequest $request)
     {
-    
+
         $users = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'roles' => $request->roles,
+            'role' => (int)$request->role, // Cast the role to an integer
         ]);
         $users -> save();
-        
+
         event(new Registered($users));
-        $users->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')->with('status', 'user created');
     }
 
-    
+
 
     /**
      * Display the specified resource.
@@ -87,8 +93,13 @@ class UsersController extends Controller
     public function show($id)
     {
         $users = User::find($id);
-     
-        return view('admin.users.show', compact('users'));
+
+        if(auth()->user()->role == 2) {
+            return view('admin.users.show', compact('users'));
+        }
+        else {
+            return view('home');
+        }
     }
 
     /**
@@ -100,10 +111,15 @@ class UsersController extends Controller
     public function edit(User $users, $id)
     {
         $users = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $users->roles->pluck('name','name')->all();
+        $role = [0 => 'Role 0', 1 => 'Role 1', 2 => 'Role 2'];
+        $userRole = $users->role;
 
-        return view('admin.users.edit', compact('users','roles','userRole'));
+        if(auth()->user()->role == 2) {
+            return view('admin.users.edit', compact('users', 'userRole'));
+        }
+        else {
+            return view('home');
+        }
     }
 
     /**
@@ -119,11 +135,8 @@ class UsersController extends Controller
         $users = User::find($id);
         $users->name = $request->name;
         $users->email = $request->email;
+        $users->role = $request->role;
         $users->save();
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-    
-        $users->assignRole($request->input('roles'));
-    
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
     }
@@ -136,7 +149,13 @@ class UsersController extends Controller
      */
     public function delete(User $users)
     {
-        return view('admin.users.delete', compact('users'));
+
+        if(auth()->user()->role == 2) {
+            return view('admin.users.delete', compact('users'));
+        }
+        else {
+            return view('home');
+        }
     }
 
     /**

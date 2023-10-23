@@ -37,15 +37,15 @@
     <label class="block text-gray-700 text-sm font-bold mb-2" for="role">
         Role
     </label>
-    <select name="roles[]" class="form-control">
-    @foreach ($roles as $value => $label)
-        <option value="{{ $value }}" {{ in_array($value, $userRole) ? 'selected' : '' }}>{{ $label }}</option>
-    @endforeach
-</select>
+    <select name="role" id="role" class="form-control">
+                                <option value="0" {{ $userRole == 0 ? 'selected' : '' }}>Role 0</option>
+                                <option value="1" {{ $userRole == 1 ? 'selected' : '' }}>Role 1</option>
+                                <option value="2" {{ $userRole == 2 ? 'selected' : '' }}>Role 2</option>
+                            </select>
 </div>
 
-          
-   
+
+
             </div>
 
             <div class="flex item-center justifiy-between">

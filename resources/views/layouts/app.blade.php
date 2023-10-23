@@ -1,4 +1,8 @@
 <!doctype html>
+@php
+    $userRole = auth()->check() ? auth()->user()->role : null;
+@endphp
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -34,16 +38,18 @@
                     <ul class="navbar-nav">
                     <a class="nav-link" href="{{ route('games') }}">{{ __('Games') }}</a>
                     </ul>
+                    @if ($userRole == 1 || $userRole == 2)
                     <ul class="navbar-nav">
-                    @can('view writers')
+
                     <a class="nav-link" href="{{ route('writers') }}">{{ __('Writers') }}</a>
-           @endcan
+
                     </ul>
-                    <ul class="navbar-nav">
-                    @can('view users')
-                    <a class="nav-link" href="{{ route('users') }}">{{ __('Users') }}</a>
-                    @endcan
-                    </ul>
+                    @endif
+                    @if ($userRole === 2)
+            <ul class="navbar-nav">
+                <a class="nav-link" href="{{ route('users') }}">{{ __('Users') }}</a>
+            </ul>
+            @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

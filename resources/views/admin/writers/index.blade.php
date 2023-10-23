@@ -10,14 +10,14 @@
 
         <div class="container">
 <div class="container mx-1">
-@can('create writers')
+@if(auth()->user()->role === 2)
 <a href="{{ route('writers.create') }}">
     <button
     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         Create
-    </button> 
+    </button>
 </a>
-@endcan
+@endif
 <div class="overflow-x-auto">
 <table class="min-w-full table-auto">
     <thead class="bg-gray divide-y divide-gray-200">
@@ -39,21 +39,20 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ $writer->name }}
             </td>
-            @can('show writers')
+
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <a class="no-underline hover:underline" href="{{ route('writers.show', ['writer' => $writer -> id]) }}"> Details </a>
                     </td>
-                    @endcan
-                    @can('edit writers')
+                    @if(auth()->user()->role === 2)
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <a class="no-underline hover:underline" href="{{ route('writers.edit', ['writer' => $writer -> id]) }}"> Edit </a>
                     </td>
-                    @endcan
-                    @can('delete writers')
+
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <a class="no-underline hover:underline" href="{{ route('writers.delete', $writer->id) }}"> Delete </a>
                     </td>
-                    @endcan
+                    @endif
+
             </tr>
         @endforeach
     </tbody>

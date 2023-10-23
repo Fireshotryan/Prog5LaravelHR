@@ -11,7 +11,7 @@
 
         @section('content')
         <div class="container">
-<div class="container mx-1">       
+<div class="container mx-1">
 
 <div class="container mx-1">
         <div class="ml-2 flex flex-col">
@@ -34,7 +34,7 @@
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                    Name 
+                    Name
                 </label>
 
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror" name="name" id="name" value="{{ old('name') }}" type="text">
@@ -42,7 +42,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                    mail 
+                    mail
                 </label>
 
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror" name="email" id="email" value="{{ old('email') }}" type="email">
@@ -50,32 +50,32 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                Wachtwoord 
+                Wachtwoord
                 </label>
 
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror" name="password" id="password" value="{{ old('password') }}" type="text">
             </div>
-            
+
             <div class="mb-4">
                             <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Confirm Password') }}</label>
 
-                       
+
                                 <input id="password-confirm" type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror" name="password_confirmation" required autocomplete="new-password">
                             </div>
-             
+
                             <div class="mb-4">
     <label class="block text-gray-700 text-sm font-bold mb-2" for="role">
         Role
     </label>
-    <select name="roles[]" class="form-control">
-    @foreach ($roles as $value => $label)
-        <option value="{{ $value }}">{{ $label }}</option>
-    @endforeach
+    <select name="role" id="role" class="form-control">
+    <option value="0">Reader</option>
+    <option value="1">Writer</option>
+    <option value="2">Admin</option>
 </select>
 </div>
 
-          
-   
+
+
             </div>
 
             <div class="flex item-center justifiy-between">

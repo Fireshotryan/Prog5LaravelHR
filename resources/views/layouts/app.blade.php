@@ -35,10 +35,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @if ($userRole == 1 || $userRole == 2)
                     <ul class="navbar-nav">
                     <a class="nav-link" href="{{ route('games') }}">{{ __('Games') }}</a>
                     </ul>
-                    @if ($userRole == 1 || $userRole == 2)
                     <ul class="navbar-nav">
 
                     <a class="nav-link" href="{{ route('writers') }}">{{ __('Writers') }}</a>

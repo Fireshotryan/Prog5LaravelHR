@@ -18,7 +18,7 @@ class GamesController extends Controller
     {
         $games = Games::all();
 
-        if (auth()->user()->role == 0 || auth()->user()->role == 1 || auth()->user()->role == 2) {
+        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
             return view('admin.games.index', compact('games'));
         }
         else {
@@ -28,7 +28,14 @@ class GamesController extends Controller
 
     public function create()
     {
-        return view('admin.games.create');
+        $games = Games::all(); /* dit voorkomt een error */
+
+        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
+           return view('admin.games.create');
+        }
+        else {
+            return view('home', compact('games'));
+        }
     }
 
     public function store(GamesStoreRequest $request)

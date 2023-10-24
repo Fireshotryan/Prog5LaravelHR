@@ -28,7 +28,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
         @foreach ($games->where('game_status', true) as $game)
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
-            <img src="{{ $game->image_url }}" alt="{{ $game->name }}" class="w-full h-40 object-cover rounded-lg">
+        <img src="{{ asset('storage/' . $game->game_img) }}" alt="{{ $game->name }}" class="w-full h-40 object-cover rounded-lg">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white mt-2">{{ $game->name }}</h2>
             <p class="text-gray-500 dark:text-gray-400 mt-2">{{ $game->id }}</p>
             <p class="text-gray-700 dark:text-gray-500 mt-2">{{ $game->description }}</p>

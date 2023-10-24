@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\GamesController;
 use App\Http\Controllers\Admin\WritersController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,12 @@ Route::get('/games', [App\Http\Controllers\Admin\GamesController::class, 'index'
 Route::get('/writers', [App\Http\Controllers\Admin\WritersController::class, 'index'])->name('writers');
 
 Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
+
+// Show user profile
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+// Update user profile
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::get('admin/games/{games}/delete', [GamesController::class, 'delete'])
 ->name('games.delete');

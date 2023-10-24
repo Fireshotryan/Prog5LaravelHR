@@ -23,7 +23,7 @@
 @endif
 
         <form id="form" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
-    action="{{ route('games.update',$games->id) }}" method="POST">
+    action="{{ route('games.update',$games->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
 
@@ -40,6 +40,18 @@
         </label>
         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror" name="description" id="description" value="{{$games->description}}" type="text">
     </div>
+
+    <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="game_img">
+        Game Image
+    </label>
+
+    @if ($games->game_img)
+        <img src="{{ asset('storage/' . $games->game_img) }}" alt="Current Image" class="mb-2 max-w-full">
+    @endif
+
+    <input type="file" class="block w-full py-2 px-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('game_img') border-red-500 @enderror" name="game_img">
+</div>
 
     <div class="flex items-center justify-between">
         <button id="submit" class="bg-green-500 hover:bg-green-700 text:white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Edit

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Games;
 use Illuminate\Http\Request;
@@ -107,6 +108,22 @@ class GamesController extends Controller
         $games = Games::find($id);
         $games->name = $request->name;
         $games->description = $request->description;
+
+      // Check if a new image has been uploaded
+      if ($request->hasFile('game_img')) {
+        // Remove the old image (if it exists)
+        if ($games->game_img) {
+            // Delete the old image file
+            Storage::delete('public/' . $games->game_img);
+        }
+
+        // Upload and store the new image
+        $image = $request->file('game_img');
+        $imageName = time() . '.' . $image->extension();
+        $image->storeAs('public/games', $imageName);
+        $games->game_img = 'games/' . $imageName;
+    }
+
         $games->save();
         return redirect()->route('games.index')->with('status', 'Game Updated');
 

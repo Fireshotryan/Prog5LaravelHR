@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\GamesController;
 use App\Http\Controllers\Admin\WritersController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,13 @@ use App\Http\Controllers\Admin\UsersController;
 Route::get('/', [GamesController::class, 'index']);
 Route::get('/', [WritersController::class, 'index']);
 Route::get('/', [UsersController::class, 'index']);
+Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [WelcomeController::class, 'welcome']);
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', [WelcomeController::class, 'welcome']);
 
 Auth::routes();
 
@@ -37,6 +41,11 @@ Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'
 
 Route::get('admin/games/{games}/delete', [GamesController::class, 'delete'])
 ->name('games.delete');
+
+Route::get('/games/accept/{id}', [GamesController::class, 'accept'])->name('games.accept');
+
+Route::get('/games/reject/{id}', [GamesController::class, 'reject'])->name('games.reject');
+
 
 Route::get('admin/writers/{writers}/delete', [WritersController::class, 'delete'])
 ->name('writers.delete');

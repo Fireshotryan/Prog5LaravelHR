@@ -95,6 +95,25 @@ class GamesController extends Controller
         return redirect()->route('games.index')->with('status', 'Game Updated');
 
     }
+
+    public function accept($id)
+    {
+        $game = Games::find($id);
+        $game->game_status = true; // Change the status to "true"
+        $game->save();
+    
+        return redirect()->route('games.index')->with('status', 'Game accepted');
+    }
+    
+    public function reject($id)
+    {
+        $game = Games::find($id);
+        $game->game_status = false; // Change the status back to "false"
+        $game->save();
+    
+        return redirect()->route('games.index')->with('status', 'Game rejected');
+    }
+
      /**
      * Show the form for deleting the specified resource.
      *

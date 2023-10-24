@@ -37,6 +37,14 @@
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                Info Game
             </th>
+            @if(auth()->user()->role === 2)
+            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+               Status accept
+            </th>
+            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+               Status Reject
+            </th>
+            @endif
 
         </tr>
     </thead>
@@ -67,6 +75,17 @@
             </td>
             @endif
 
+            @if(auth()->user()->role === 2)
+
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+    <a
+        class="btn {{ $game->game_status ? 'btn-primary' : 'btn-outline-secondary' }}"
+        href="{{ $game->game_status ? route('games.reject', $game->id) : route('games.accept', $game->id) }}"
+    >
+        {{ $game->game_status ? 'Reject' : 'Accept' }}
+    </a>
+</td>
+@endif
 
         </tr>
         @endforeach
@@ -76,4 +95,27 @@
     </div>
 @endsection
 </div>
+
+<script>
+    document.querySelectorAll('.btn').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const gameId = this.dataset.gameId;
+            const currentStatus = this.dataset.currentStatus;
+
+            // Perform an AJAX request to update the game status in the database
+            // Use the gameId and currentStatus variables to determine the new status
+            // Update the button's class and text based on the new status
+            // Example:
+            // Your AJAX request goes here
+
+            // Toggle the class and text
+            this.classList.toggle('btn-primary');
+            this.classList.toggle('btn-outline-secondary');
+            this.innerText = currentStatus === 'true' ? 'Accept' : 'Reject';
+            this.dataset.currentStatus = currentStatus === 'true' ? 'false' : 'true';
+        });
+    });
+</script>
+
 

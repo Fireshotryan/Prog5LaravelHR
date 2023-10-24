@@ -62,6 +62,9 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                <a class="btn btn-link" href="/">
+                                {{ __('Terug') }}
+                                    </a>
                             </div>
                         </div>
                     </form>

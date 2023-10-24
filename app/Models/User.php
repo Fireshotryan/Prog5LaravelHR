@@ -45,4 +45,10 @@ class User extends Authenticatable
         'password' => 'hashed',
         'role' => 'integer',
     ];
+
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
+
 }

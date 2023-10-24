@@ -38,6 +38,11 @@
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white mt-2">{{ $game->name }}</h2>
             <p class="text-gray-500 dark:text-gray-400 mt-2">{{ $game->id }}</p>
             <p class="text-gray-700 dark:text-gray-500 mt-2">{{ $game->description }}</p>
+            @if ($game->creator)
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Created by: {{ $game->creator->name }}</p>
+                @else
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Creator information not available</p>
+                @endif
    <a href="{{ route('games.show', ['game' => $game -> id]) }}" class="mt-4 inline-block font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">View Details</a> 
         </div>
         @endforeach

@@ -44,6 +44,7 @@ class GamesController extends Controller
         $games = new Games();
         $games -> name = $request->name;
         $games -> description = $request->description;
+        $games->user_id = auth()->id();
 
             // Handle image upload
     if ($request->hasFile('game_img')) {

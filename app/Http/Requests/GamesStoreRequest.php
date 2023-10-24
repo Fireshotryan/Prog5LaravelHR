@@ -23,7 +23,8 @@ class GamesStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:games|min:5|max:100',
-            'description' => 'required'
+            'description' => 'required',
+            'game_img' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

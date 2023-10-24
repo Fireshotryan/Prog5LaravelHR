@@ -43,6 +43,15 @@ class GamesController extends Controller
         $games = new Games();
         $games -> name = $request->name;
         $games -> description = $request->description;
+
+            // Handle image upload
+    if ($request->hasFile('game_img')) {
+        $image = $request->file('game_img');
+        $imageName = time().'.'.$image->extension();
+        $image->storeAs('public/games', $imageName);
+        $games->game_img = 'games/' . $imageName;
+    }
+
         $games -> save();
         return redirect()->route('games.index')->with('status', 'game created');
     }

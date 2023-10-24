@@ -37,12 +37,18 @@
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                Info Game
             </th>
-            @if(auth()->user()->role === 2)
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-               Status accept
+             
             </th>
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-               Status Reject
+      
+            </th>
+            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        
+            </th>
+            @if(auth()->user()->role === 2)
+            <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+               Status
             </th>
             @endif
 

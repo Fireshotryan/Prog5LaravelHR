@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->mediumText('description');
+            $table->string('game_img')->nullable();
             $table->boolean('game_status')->default(false);
             $table->timestamps();
         });

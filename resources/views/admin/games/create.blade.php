@@ -32,7 +32,7 @@
     </div>
 @endif
 
-        <form id="form" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" action="{{ route('games.store') }}" method="POST">
+        <form id="form" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" action="{{ route('games.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
@@ -49,6 +49,14 @@
 
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror" name="description" id="description" value="{{ old('description') }}" type="text">
             </div>
+
+            <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="game_img">
+        Game Image
+    </label>
+
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('game_img') border-red-500 @enderror" name="game_img" id="game_img" type="file">
+</div>
 
 
             <div class="flex item-center justifiy-between">

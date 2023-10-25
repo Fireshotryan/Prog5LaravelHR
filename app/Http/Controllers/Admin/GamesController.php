@@ -35,7 +35,7 @@ class GamesController extends Controller
            return view('admin.games.create');
         }
         else {
-            return view('home', compact('games'));
+            return redirect()->route('dashboard');
         }
     }
 
@@ -72,7 +72,7 @@ class GamesController extends Controller
             return view('admin.games.show', compact('games'));
         }
         else {
-            return view('home', compact('games'));
+            return redirect()->route('dashboard');
         }
     }
 
@@ -85,20 +85,16 @@ class GamesController extends Controller
 
     public function edit(Games $games, $id)
     {
-
-        if ($games->user_id == auth()->user()->id ) {
-            $games = Games::find($id);
-
-            if (auth()->user()->role == 1 || auth()->user()->role == 2) {
-                return view('admin.games.edit', compact('games'));
-            }
-            else {
-                return view('home', compact('games'));
-            }
-         }
-               return redirect('home')->with('error','dit is niet jouw wedstrijd');;
+        $games = Games::find($id);
+        $user = auth()->user();
+    
+        // Check if the currently logged in user is the creator of the game
+        if ($user->id === $games->user_id) {
+            return view('admin.games.edit', compact('games'));
+        } else {
+            return redirect()->route('dashboard');
+        }
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -164,7 +160,7 @@ class GamesController extends Controller
             return view('admin.games.delete', compact('games'));
         }
         else {
-            return view('home', compact('games'));
+            return redirect()->route('dashboard');
         }
     }
 

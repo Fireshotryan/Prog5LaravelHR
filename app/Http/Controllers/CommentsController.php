@@ -42,7 +42,7 @@ class CommentsController extends Controller
             ->distinct('game_id')
             ->count();
 
-        if ($visitedGameCount < 6) {
+        if ($visitedGameCount < 5) {
             return redirect()->route('dashboard')
                 ->with('status', 'You need to view more games before posting comments.');
         }

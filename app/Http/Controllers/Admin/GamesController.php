@@ -85,15 +85,18 @@ class GamesController extends Controller
 
     public function edit(Games $games, $id)
     {
-        $games = Games::find($id);
 
-        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
-            return view('admin.games.edit', compact('games'));
-        }
-        else {
-            return view('home', compact('games'));
-        }
+        if ($games->user_id == auth()->user()->id ) {
+            $games = Games::find($id);
 
+            if (auth()->user()->role == 1 || auth()->user()->role == 2) {
+                return view('admin.games.edit', compact('games'));
+            }
+            else {
+                return view('home', compact('games'));
+            }
+         }
+               return redirect('home')->with('error','dit is niet jouw wedstrijd');;
     }
 
 

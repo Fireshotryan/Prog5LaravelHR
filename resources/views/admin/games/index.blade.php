@@ -115,13 +115,6 @@
             const gameId = this.dataset.gameId;
             const currentStatus = this.dataset.currentStatus;
 
-            // Perform an AJAX request to update the game status in the database
-            // Use the gameId and currentStatus variables to determine the new status
-            // Update the button's class and text based on the new status
-            // Example:
-            // Your AJAX request goes here
-
-            // Toggle the class and text
             this.classList.toggle('btn-primary');
             this.classList.toggle('btn-outline-secondary');
             this.innerText = currentStatus === 'true' ? 'Accept' : 'Reject';

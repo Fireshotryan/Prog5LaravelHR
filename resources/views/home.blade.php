@@ -37,7 +37,9 @@
                 @else
                     <p class="text-gray-500 dark:text-gray-400 mt-2">Creator information not available</p>
                 @endif
-   <a href="{{ route('games.show', ['game' => $game -> id]) }}" class="mt-4 inline-block font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">View Details</a> 
+                <a href="{{ route('comments.show', ['games' => $game->id]) }}" class="mt-4 inline-block font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">View Details</a>
+
+
         </div>
         @endforeach
     </div>

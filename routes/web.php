@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\WritersController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/games', [App\Http\Controllers\Admin\GamesController::class, 'index'])->name('games');
+
+Route::get('/comments/{games}', [CommentsController::class, 'show'])->name('comments.show');
+
+Route::post('/comments/{games}', [CommentsController::class, 'store'])->name('comments.store');
 
 Route::get('/writers', [App\Http\Controllers\Admin\WritersController::class, 'index'])->name('writers');
 

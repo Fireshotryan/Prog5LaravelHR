@@ -15,4 +15,10 @@ class Games extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'game_id'); // Specify the correct foreign key name here
+    }
+    
 }

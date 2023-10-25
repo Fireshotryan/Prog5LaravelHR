@@ -10,7 +10,7 @@ class WelcomeController extends Controller
 {
     public function welcome()
     {
-        $games = Games::all(); // Fetch games from your model or database
+        $games = Games::all(); 
 
         return view('welcome', compact('games'));
     }

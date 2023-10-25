@@ -38,9 +38,9 @@
         Role
     </label>
     <select name="role" id="role" class="form-control">
-                                <option value="0" {{ $userRole == 0 ? 'selected' : '' }}>Role 0</option>
-                                <option value="1" {{ $userRole == 1 ? 'selected' : '' }}>Role 1</option>
-                                <option value="2" {{ $userRole == 2 ? 'selected' : '' }}>Role 2</option>
+                                <option value="0" {{ $userRole == 0 ? 'selected' : '' }}>Reader</option>
+                                <option value="1" {{ $userRole == 1 ? 'selected' : '' }}>Writer</option>
+                                <option value="2" {{ $userRole == 2 ? 'selected' : '' }}>Admin</option>
                             </select>
 </div>
 

@@ -25,7 +25,7 @@ public function update(ProfileUpdateRequest $request)
         'name' => $request->name,
         'email' => $request->email,
         'password' => $request->password,
-        // Update other fields here
+   
     ]);
 
     return redirect()->route('profile.show')->with('success', 'Profile updated successfully');

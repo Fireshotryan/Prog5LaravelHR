@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @section('content')
 
 
@@ -50,12 +54,18 @@
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tigh focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror" name="description" id="description" value="{{ old('description') }}" type="text">
             </div>
 
-            <label for="tags">Tags:</label>
-<select name="tags[]" id="tags" multiple>
-    @foreach ($tags as $tag)
-        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-    @endforeach
-</select>
+            <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="tags">
+        Tags
+    </label>
+    <div class="relative">
+        <select name="tags[]" id="tags" multiple class="block appearance-none w-full border border-gray-400 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline">
+            @foreach ($tags as $tag)
+                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
 
 
             <div class="mb-4">
@@ -74,3 +84,9 @@
         </form>
     </div>
 @endsection
+
+<script>
+    $(document).ready(function() {
+        $('#tags').select2();
+    });
+</script>

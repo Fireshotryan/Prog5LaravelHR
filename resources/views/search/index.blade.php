@@ -23,17 +23,19 @@
 <div class="container mx-auto p-6">
     <h1 class="text-3xl font-semibold text-gray-900 dark:text-white">Search Results</h1>
 
-    <form id="searchForm" action="{{ route('search.index') }}" method="GET">
+    <form id="searchForm" action="{{ route('search.index') }}" method="GET" class="mt-4">
         @csrf
-        <input type="text" name="query" id="query" placeholder="Search games by name">
-        <!-- Add a select field for tags -->
-        <select name="tag" id="tag">
-            <option value="">All Tags</option>
-            @foreach($tags as $tag)
-                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-            @endforeach
-        </select>
-        <button type="submit">Search</button>
+        <div class="flex">
+            <input type="text" name="query" id="query" placeholder="Search games by name" class="w-full p-2 border rounded-l focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-900 dark:border-gray-700 dark:text-white">
+            <!-- Add a select field for tags -->
+            <select name="tag" id="tag" class="p-2 border rounded-r focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-900 dark:border-gray-700 dark:text-white">
+            <option value="">No tags</option>
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+            </select>
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-r focus:outline-none hover:bg-blue-700 active:bg-blue-800">Search</button>
+        </div>
     </form>
 
     <!-- Display search results here -->

@@ -41,7 +41,7 @@
                     </ul>
                     <ul class="navbar-nav">
 
-                    <a class="nav-link" href="{{ route('writers') }}">{{ __('Writers') }}</a>
+                    <a class="nav-link" href="{{ route('tags') }}">{{ __('Tags') }}</a>
 
                     </ul>
                     @endif

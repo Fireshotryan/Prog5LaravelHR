@@ -18,7 +18,7 @@
 <div class="container mx-1">
         <div class="ml-2 flex flex-col">
             <h2 class="my-4 text-4xl font-semibold text-gray-600 dark:text-gray-400">
-                Writers Admin
+                Tags Admin
             </h2>
         </div>
 
@@ -32,7 +32,7 @@
     </div>
 @endif
 
-        <form id="form" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" action="{{ route('writers.store') }}" method="POST">
+        <form id="form" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" action="{{ route('tags.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">

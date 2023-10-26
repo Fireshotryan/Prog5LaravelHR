@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WritersUpdateRequest extends FormRequest
+class TagsUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class WritersUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:5|max:100'
+            'name' => 'required|string|unique:games|min:2|max:100'
         ];
     }
 }

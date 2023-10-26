@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Games;
+use App\Models\Tag;
 
 class HomeController extends Controller
 {
@@ -25,9 +26,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $games = Games::all();
-        return view('home', compact('games'));
+        $tags = Tag::all();
+        return view('home', compact('games','tags'));
     }
 }

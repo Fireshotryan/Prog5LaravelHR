@@ -16,7 +16,7 @@
     <thead class="bg-gray divide-y divide-gray-200">
         <tr>
             <th class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-               Naam Writer
+               Naam Tag
             </th>
         </tr>
     </thead>
@@ -24,7 +24,7 @@
       
         <tr>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {{ $writers->name }}
+            {{ $tags->name }}
             </td>
         </tr>
  

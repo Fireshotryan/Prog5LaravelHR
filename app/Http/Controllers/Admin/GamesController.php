@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Games;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\GamesStoreRequest;
 use App\Http\Requests\GamesUpdateRequest;
@@ -30,9 +31,10 @@ class GamesController extends Controller
     public function create()
     {
         $games = Games::all(); /* dit voorkomt een error */
+        $tags = Tag::all(); // Retrieve the list of tags
 
         if (auth()->user()->role == 1 || auth()->user()->role == 2) {
-           return view('admin.games.create');
+           return view('admin.games.create', compact('tags'));
         }
         else {
             return redirect()->route('dashboard');
@@ -46,6 +48,7 @@ class GamesController extends Controller
         $games -> description = $request->description;
         $games->user_id = auth()->id();
 
+
             // Handle image upload
     if ($request->hasFile('game_img')) {
         $image = $request->file('game_img');
@@ -55,6 +58,8 @@ class GamesController extends Controller
     }
 
         $games -> save();
+    
+        $games->tags()->attach($request->input('tags'));
         return redirect()->route('games.index')->with('status', 'game created');
     }
 
@@ -86,11 +91,12 @@ class GamesController extends Controller
     public function edit(Games $games, $id)
     {
         $games = Games::find($id);
+        $tags = Tag::all(); // Fetch all tags
         $user = auth()->user();
     
         // Check if the currently logged in user is the creator of the game
         if ($user->id === $games->user_id) {
-            return view('admin.games.edit', compact('games'));
+            return view('admin.games.edit', compact('games', 'tags'));
         } else {
             return redirect()->route('dashboard');
         }
@@ -106,6 +112,7 @@ class GamesController extends Controller
     public function update(GamesUpdateRequest $request, $id)
     {
         $games = Games::find($id);
+        $tags = Tag::all(); // Retrieve the list of tags
         $games->name = $request->name;
         $games->description = $request->description;
 
@@ -125,6 +132,8 @@ class GamesController extends Controller
     }
 
         $games->save();
+
+        $games->tags()->sync($request->input('tags'));
         return redirect()->route('games.index')->with('status', 'Game Updated');
 
     }

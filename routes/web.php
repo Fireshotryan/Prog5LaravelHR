@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\GamesController;
-use App\Http\Controllers\Admin\WritersController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Admin\TagsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', [GamesController::class, 'index']);
-Route::get('/', [WritersController::class, 'index']);
+Route::get('/', [TagsController::class, 'index']);
 Route::get('/', [UsersController::class, 'index']);
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/', [WelcomeController::class, 'welcome']);
@@ -45,7 +45,7 @@ Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 
 Route::post('/comments/{games}', [CommentsController::class, 'store'])->name('comments.store');
 
-Route::get('/writers', [App\Http\Controllers\Admin\WritersController::class, 'index'])->name('writers');
+Route::get('/tags', [App\Http\Controllers\Admin\TagsController::class, 'index'])->name('tags');
 
 Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
 
@@ -62,15 +62,14 @@ Route::get('/games/accept/{id}', [GamesController::class, 'accept'])->name('game
 
 Route::get('/games/reject/{id}', [GamesController::class, 'reject'])->name('games.reject');
 
-
-Route::get('admin/writers/{writers}/delete', [WritersController::class, 'delete'])
-->name('writers.delete');
+Route::get('admin/tags/{tags}/delete', [TagsController::class, 'delete'])
+->name('tags.delete');
 
 Route::get('admin/users/{users}/delete', [UsersController::class, 'delete'])
 ->name('users.delete');
 
 Route::resource('/admin/games', GamesController::class);
-Route::resource('/admin/writers', WritersController::class);
+Route::resource('/admin/tags', TagsController::class);
 Route::resource('/admin/users', UsersController::class);
 Route::resource('roles', RoleController::class);
 

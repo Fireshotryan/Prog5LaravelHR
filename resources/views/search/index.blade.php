@@ -26,6 +26,13 @@
     <form id="searchForm" action="{{ route('search.index') }}" method="GET">
         @csrf
         <input type="text" name="query" id="query" placeholder="Search games by name">
+        <!-- Add a select field for tags -->
+        <select name="tag" id="tag">
+            <option value="">All Tags</option>
+            @foreach($tags as $tag)
+                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+            @endforeach
+        </select>
         <button type="submit">Search</button>
     </form>
 
@@ -37,6 +44,13 @@
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mt-2">{{ $game->name }}</h2>
         <p class="text-gray-500 dark:text-gray-400 mt-2">{{ $game->id }}</p>
         <p class="text-gray-700 dark:text-gray-500 mt-2">{{ $game->description }}</p>
+        @if ($game->tags->count() > 0)
+            <p class="text-gray-500 dark:text-gray-400 mt-2">
+                Tags: {{ $game->tags->pluck('name')->implode(', ') }}
+            </p>
+        @else
+            <p class="text-gray-500 dark:text-gray-400 mt-2">No tags available</p>
+        @endif
         @if ($game->creator)
             <p class="text-gray-500 dark:text-gray-400 mt-2">Created by: {{ $game->creator->name }}</p>
         @else

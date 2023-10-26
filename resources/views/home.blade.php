@@ -24,6 +24,12 @@
 </div>
 <div class="container mx-auto p-6">
     <h1 class="text-3xl font-semibold text-gray-900 dark:text-white">Our Products</h1>
+
+      <form id="searchForm" action="{{ route('search.index') }}" method="GET">
+        @csrf
+        <input type="text" name="query" id="query" placeholder="Search games by name">
+        <button type="submit">Search</button>
+    </form>
     <!-- Product Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
         @foreach ($games->where('game_status', true) as $game)

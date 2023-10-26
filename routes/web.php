@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/games', [App\Http\Controllers\Admin\GamesController::class, 'index'])->name('games');
 
 Route::get('/comments/{games}', [CommentsController::class, 'show'])->name('comments.show');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+
 
 Route::post('/comments/{games}', [CommentsController::class, 'store'])->name('comments.store');
 

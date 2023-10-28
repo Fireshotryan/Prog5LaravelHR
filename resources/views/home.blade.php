@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    {{ __('Nieuwe gebruikers moeten 5 Games bekijken, voordat ze kunnen commenten!') }}
 
         
                 </div>

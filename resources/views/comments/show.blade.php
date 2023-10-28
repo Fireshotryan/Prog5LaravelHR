@@ -32,18 +32,27 @@
     </div>
 
     <h2 class="mt-6 text-xl font-semibold text-gray-900">Comments</h2>
-    <ul>
-        @if(count($comments) > 0)
-            @foreach ($comments as $comment)
-                <li class="mt-4 text-gray-700">
+    <ul class="comment-list">
+    @if(count($comments) > 0)
+        @foreach ($comments as $comment)
+            <li class="comment-item" style="border: 1px solid #ccc; margin: 10px 0; padding: 10px; background-color: #f9f9f9; display: flex; align-items: flex-start;">
+                <div class="comment-avatar" style="margin-right: 10px;">
+                    <img src="{{ asset('storage/' . $comment->user->avatar) }}" alt="{{ $comment->user->name }}" style="border: 1px solid #3498db; border-radius: 50%; width: 40px; height: 40px;">
+                </div>
+                <div class="comment-content">
+                    <p class="comment-author" style="color: #3498db;">Comment made by: {{ $comment->user->name }}</p>
+                    <p class="comment-date" style="color: #3498db;">on {{ $comment->created_at }}</p>
                     {{ $comment->content }}
-                    <p class="text-blue-500">Comment by: {{ $comment->user->name }}</p>
-                </li>
-            @endforeach
-        @else
-            <li class="mt-4 text-gray-500">No comments available.</li>
-        @endif
-    </ul>
+                </div>
+            </li>
+        @endforeach
+    @else
+        <li class="mt-4 text-gray-500">No comments available.</li>
+    @endif
+</ul>
+
+
+
 
     <h2 class="mt-6 text-xl font-semibold text-gray-900">Add a Comment</h2>
     <form action="{{ route('comments.store', ['games' => $games->id]) }}" method="post">

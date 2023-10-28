@@ -36,7 +36,7 @@ class UsersController extends Controller
             return view('admin.users.index', compact('users'));
         }
         else {
-            return view('home', compact('users'));
+            return redirect()->route('dashboard');
         }
 
 
@@ -55,7 +55,7 @@ class UsersController extends Controller
             return view('admin.users.create',compact('role'));
         }
         else {
-            return view('home');
+            return redirect()->route('dashboard');
         }
     }
 
@@ -98,7 +98,7 @@ class UsersController extends Controller
             return view('admin.users.show', compact('users'));
         }
         else {
-            return view('home');
+            return redirect()->route('dashboard');
         }
     }
 
@@ -118,7 +118,7 @@ class UsersController extends Controller
             return view('admin.users.edit', compact('users', 'userRole'));
         }
         else {
-            return view('home');
+            return redirect()->route('dashboard');
         }
     }
 
@@ -154,7 +154,7 @@ class UsersController extends Controller
             return view('admin.users.delete', compact('users'));
         }
         else {
-            return view('home');
+            return redirect()->route('dashboard');
         }
     }
 

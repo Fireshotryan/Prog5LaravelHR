@@ -24,7 +24,7 @@ class GamesController extends Controller
             return view('admin.games.index', compact('games'));
         }
         else {
-            return view('home', compact('games'));
+            return redirect()->route('dashboard');
         }
     }
 
@@ -73,7 +73,7 @@ class GamesController extends Controller
     {
         $games = Games::find($id);
 
-        if (auth()->user()->role == 0 || auth()->user()->role == 1 || auth()->user()->role == 2) {
+        if (auth()->user()->role == 1 || auth()->user()->role == 2) {
             return view('admin.games.show', compact('games'));
         }
         else {

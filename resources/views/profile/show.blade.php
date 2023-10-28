@@ -24,9 +24,18 @@
 
 <h2>User Profile</h2>
 <!-- Form for updating profile info -->
-<form method="POST" action="{{ route('profile.update') }}">
+<form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="avatar">
+            Current Avatar
+        </label>
+        <img src="{{ asset('storage/' . $user->avatar) }}" alt="Current Avatar" class="mb-2">
+        <input type="file" name="avatar" accept="image/*">
+    </div>
+
 
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="name">

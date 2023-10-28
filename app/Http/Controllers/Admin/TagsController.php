@@ -22,7 +22,7 @@ class TagsController extends Controller
     if (auth()->user()->role == 1 || auth()->user()->role == 2) {
         return view('admin.tags.index', compact('tags'));
     } else {
-        return view('home', compact('tags'));
+        return redirect()->route('dashboard');
     }
 }
 
@@ -32,7 +32,7 @@ class TagsController extends Controller
             return view('admin.tags.create');
         }
         else {
-            return view('home');
+            return redirect()->route('dashboard');
         }
     }
 
@@ -52,7 +52,7 @@ class TagsController extends Controller
             return view('admin.tags.show', compact('tags'));
         }
         else {
-            return view('home', compact('tags'));
+            return redirect()->route('dashboard');
         }
     }
 
@@ -64,7 +64,7 @@ class TagsController extends Controller
             return view('admin.tags.edit', compact('tags'));
         }
         else {
-            return view('home', compact('tags'));
+            return redirect()->route('dashboard');
         }
     }
 
@@ -83,7 +83,7 @@ class TagsController extends Controller
             return view('admin.tags.delete', compact('tags'));
         }
         else {
-            return view('home', compact('tags'));
+            return redirect()->route('dashboard');
         }
     }
 

@@ -5,7 +5,8 @@
   <li>Dummy Info (seeders)</li>
   <li>Must visit posts before allowing comments/viewing posts</li>
   <li>Admins must approve/activate posts before they are visible</li>
-  <li>Only creaters of their own posts can edit their own posts (not others)</li>
+  <li>Only creators of their own posts can edit their own posts (not others)</li>
+  <li>View own profile and edit own profile</li>
 </ul>
 
 <h3>To use this</h3>

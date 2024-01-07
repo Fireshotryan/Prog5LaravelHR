@@ -8,7 +8,15 @@
   <li>Only creaters of their own posts can edit their own posts (not others)</li>
 </ul>
 
+<h3>To use this</h3>
+<ul>
+<li>NPM install</li>
+<li>NPM run dev or NPM run build</li>
+</ul>
 
+<p>if you want to change the database name or information etc. Make .env or use the .envexample and change the names to what you use. (whether it is database name etc.)</p>
+
+<p>If there are issues good luck on finding them or you can ask it if setting up does not work.</p>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 

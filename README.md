@@ -1,7 +1,12 @@
-<p>wat moet ik nog doen lijst</p>
-<li>CRUDS Maken</li>
-<li>Rollen Maken en geven aan users</li>
-<li>users maken en dummy users</li>
+<h1>School Project for CMGT Programming 5: Laravel PHP Framework</h1>
+
+<ul>
+  <li>Custom Roles</li>
+  <li>Dummy Info (seeders)</li>
+  <li>Must visit posts before allowing comments/viewing posts</li>
+  <li>Admins must approve/activate posts before they are visible</li>
+  <li>Only creaters of their own posts can edit their own posts (not others)</li>
+</ul>
 
 
 
